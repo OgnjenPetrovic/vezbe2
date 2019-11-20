@@ -29,14 +29,25 @@ export default class RegPage {
   }
 
   register({name, surname, email, password, passConf}) {
-    this.firstName.type(name)
-    this.lastName.type(surname)
-    this.email.type(email)
-    this.password.type(password)
-    this.passwordConfirm.type(passConf)
-    this.checkBox.click()
+    this.firstName.type(this.ifExist(name))
+    this.lastName.type(this.ifExist(surname))
+    this.email.type(this.ifExist(email))
+    this.password.type(this.ifExist(password))
+    this.passwordConfirm.type(this.ifExist(passConf))
     this.loginButton.click()
   }
+
+  ifExist(postoji) {
+    if (!postoji) {
+      postoji = 'validdata@gmail'
+    } return postoji
+  }
+
+  registerCheck({name, surname, email, password, passConf}) {
+    this.checkBox.click()
+    this.register({name, surname, email, password, passConf})
+  }
+  
 }
 
 export const regPage = new RegPage()
