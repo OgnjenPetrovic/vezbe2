@@ -1,5 +1,6 @@
 export const EMAIL = {
     EXISTING: 'zoomght@gmail.com',
+    INVALIDEMAIL: 'dsafafdsfs',
     PASSWORD: 'sifrica1'
 }  
 
