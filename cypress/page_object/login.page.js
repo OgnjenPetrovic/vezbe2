@@ -6,7 +6,7 @@ export default class AuthPage {
   }
 
   get password() {
-    return cy.get('input[id="password"]')
+    return cy.get('#password')
   }
 
   get loginButton() {

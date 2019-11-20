@@ -29,6 +29,9 @@ export default class RegPage {
   }
 
   register({name, surname, email, password, passConf}) {
+    // ifExist proverava da li je parametar prosledjen u funkciju 
+    // ako je prosledjen uzece taj koji je prosledjen
+    // ako nije prosledjen ukucace konstantu iz if Exist funkcije
     this.firstName.type(this.ifExist(name))
     this.lastName.type(this.ifExist(surname))
     this.email.type(this.ifExist(email))
