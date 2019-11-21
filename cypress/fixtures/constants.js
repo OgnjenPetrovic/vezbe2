@@ -9,5 +9,6 @@ export const REGISTER = {
         surname: 'Peric', 
         email: 'test',
         password: 'si',
-        passConf: 'si'   
+        passConf: 'si',   
+        chexbox: 'yes'
 }
