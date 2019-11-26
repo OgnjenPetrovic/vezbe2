@@ -4,12 +4,17 @@ import { galleryPage } from '../../page_object/create_gallery.page'
 describe('My First Test', function() {
 
     beforeEach(() => {
-      cy.visit('/login')
-      authPage.login(EMAIL.EXISTING, EMAIL.PASSWORD)
+      //cy.visit('/login')
+      //authPage.login(EMAIL.EXISTING, EMAIL.PASSWORD)
+      cy.login(EMAIL.EXISTING, EMAIL.PASSWORD)
+      //cy.visit('/')
     })
     
    
-    it('TC - 01 My gallery page - pagination', function() {
+    it.only('TC - 01 My gallery page - pagination', function() {
+      cy.server()
+      cy.route('GET', 'https://gallery-api.vivifyideas.com/api/galleries?page=1&term=', 'fixture:gallery.json').as('stub')
+      cy.visit('/')
       cy.get('.cell').eq(9).should('exist')
       cy.get('.cell').eq(10).should('not.exist')
       cy.get('.btn-custom').click()
@@ -34,7 +39,7 @@ describe('My First Test', function() {
         cy.get('.box-title').eq(0).should('contain', 'This is the title')
     })
 
-    it.only('TC - 04 Create gallery positive case', function() {
+    it('TC - 04 Create gallery positive case', function() {
         cy.contains('Create Gallery').click()
         galleryPage.title.type('This is the title')
         galleryPage.description.type('This is a valid descriotion')
@@ -44,6 +49,11 @@ describe('My First Test', function() {
         cy.get('.fa-trash').eq(1).click()
         galleryPage.picture.eq(1).should('not.exist')
         cy.get('.fa-chevron-circle-up').eq(0).click()
-    })
+        galleryPage.picture.invoke('val').should('contains', 'https://html.com/wp-content/uploads/flamingo.jpg')
+        // .then(text => {
+        //  const someText = text;
+        //  cy.log(someText);
+        //  });
+      })
 
 })
